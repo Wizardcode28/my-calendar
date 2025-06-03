@@ -63,6 +63,11 @@
     display: flex;
     justify-content: center;
 }
+@media (max-width:500px){
+    .month ul li{
+        font-size: 1.2rem;
+    }
+}
 .days{
     display: flex;
     /* justify-content: space-around; */

@@ -46,6 +46,8 @@ function close() {
 cancel.addEventListener("click",()=>{
     close()
 })
+
+
 function save() {
   const event = document.getElementById("input").value;
   if (!event) return;
