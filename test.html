@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gradient-border Calendar</title>
+  <style>
+    /* ──────────────────────────────────────────────────
+       1) Choose one of the two methods below:
+
+       METHOD A: “border-image” on one box
+       METHOD B: outer wrapper (gradient) + inner box
+
+       I’ll demonstrate both. 
+    ─────────────────────────────────────────────────── */
+
+    /**********************
+      METHOD A: 
+      Single element with border-image 
+    **********************/
+    .calendar-method-A {
+      width: 350px;                    /* or whatever width you need */
+      border: 2px solid transparent;   /* allocate space for a 2px ring */
+      border-radius: 16px;
+      border-image: 
+        linear-gradient(
+          90deg, 
+          #40D1C8 0%,    /* teal-ish on the left */
+          #C084FC 100%   /* lavender-ish on the right */
+        ) 
+        1; /* scale the gradient to exactly fill that 2px width */
+
+      background-color: #EDF2F7;       /* light gray-blue interior */
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      padding: 1.5rem;
+      margin: 2rem auto;
+      font-family: sans-serif;
+    }
+
+    /**********************
+      METHOD B: 
+      Two nested boxes (outer has gradient, inner is card)
+    **********************/
+    .calendar-wrapper {
+      width: 350px;                    /* total width, including ring */
+      border-radius: 16px;             /* same rounding all the way around */
+      background: linear-gradient(
+                    90deg, 
+                    #40D1C8 0%,    /* left teal */
+                    #C084FC 100%   /* right purple */
+                  );
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      margin: 2rem auto;
+      padding: 2px;                    /* thickness of the ring */
+    }
+
+    .calendar-inner {
+      background-color: #EDF2F7;       /* pale gray-blue inside */
+      border-radius: 14px;             /* slightly smaller so the ring shows through */
+      padding: 1.5rem;
+      font-family: sans-serif;
+    }
+
+    /* ──────────────────────────────────────────────────
+       2) Common styles: typography & layout inside the “card”
+    ─────────────────────────────────────────────────── */
+
+    .calendar-header {
+      text-align: center;
+      font-size: 1.25rem;               /* roughly 20px */
+      font-weight: 600;
+      color: #2D3748;                   /* charcoal for “September 2021” */
+      margin-bottom: 1rem;
+    }
+
+    .nav-arrows {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .nav-arrows button {
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      color: #A0AEC0;                   /* medium-gray arrow color */
+      cursor: pointer;
+    }
+
+    .weekday-labels {
+      display: flex;
+      justify-content: space-between;
+      color: #A0AEC0;                   /* medium gray */
+      font-size: 0.875rem;              /* 14px */
+      margin-bottom: 0.75rem;
+    }
+    .weekday-labels div {
+      width: calc(100%/7);
+      text-align: center;
+    }
+
+    .day-grid {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .day-cell {
+      width: calc(100%/7);
+      text-align: center;
+      padding: 0.75rem 0;
+      color: #2D3748;                   /* dark gray for day numbers */
+      font-size: 1rem;                  /* 16px */
+      position: relative;
+    }
+
+    .day-cell.selected {
+      background-color: #A855F7;        /* purple circle */
+      color: #FFFFFF;                   /* white day number */
+      border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      margin: auto;                     /* center the circle */
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ─── METHOD A: Single element with border-image ─── -->
+  <div class="calendar-method-A">
+    <div class="calendar-header">September 2021</div>
+    <div class="weekday-labels">
+      <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
+    </div>
+    <div class="day-grid">
+      <!-- Example days (1–31). You’d generate these with JS or server-side loop. -->
+      <!-- Suppose “19” is selected: -->
+      <div class="day-cell">1</div>
+      <div class="day-cell">2</div>
+      <div class="day-cell">3</div>
+      <div class="day-cell">4</div>
+      <div class="day-cell">5</div>
+      <div class="day-cell">6</div>
+      <div class="day-cell">7</div>
+
+      <div class="day-cell">8</div>
+      <div class="day-cell">9</div>
+      <div class="day-cell">10</div>
+      <div class="day-cell">11</div>
+      <div class="day-cell">12</div>
+      <div class="day-cell">13</div>
+      <div class="day-cell">14</div>
+
+      <div class="day-cell">15</div>
+      <div class="day-cell">16</div>
+      <div class="day-cell">17</div>
+      <div class="day-cell">18</div>
+      <div class="day-cell selected">19</div> <!-- selected day -->
+      <div class="day-cell">20</div>
+      <div class="day-cell">21</div>
+
+      <div class="day-cell">22</div>
+      <div class="day-cell">23</div>
+      <div class="day-cell">24</div>
+      <div class="day-cell">25</div>
+      <div class="day-cell">26</div>
+      <div class="day-cell">27</div>
+      <div class="day-cell">28</div>
+
+      <div class="day-cell">29</div>
+      <div class="day-cell">30</div>
+      <div class="day-cell">31</div>
+      <!-- The rest would be empty or next/previous month days -->
+    </div>
+  </div>
+
+
+  <!-- ─── METHOD B: Two wrappers (gradient outside + inner “card”) ─── -->
+  <div class="calendar-wrapper">
+    <div class="calendar-inner">
+      <div class="calendar-header">September 2021</div>
+      <div class="weekday-labels">
+        <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
+      </div>
+      <div class="day-grid">
+        <div class="day-cell">1</div>
+        <div class="day-cell">2</div>
+        <div class="day-cell">3</div>
+        <div class="day-cell">4</div>
+        <div class="day-cell">5</div>
+        <div class="day-cell">6</div>
+        <div class="day-cell">7</div>
+
+        <div class="day-cell">8</div>
+        <div class="day-cell">9</div>
+        <div class="day-cell">10</div>
+        <div class="day-cell">11</div>
+        <div class="day-cell">12</div>
+        <div class="day-cell">13</div>
+        <div class="day-cell">14</div>
+
+        <div class="day-cell">15</div>
+        <div class="day-cell">16</div>
+        <div class="day-cell">17</div>
+        <div class="day-cell">18</div>
+        <div class="day-cell selected">19</div>
+        <div class="day-cell">20</div>
+        <div class="day-cell">21</div>
+
+        <div class="day-cell">22</div>
+        <div class="day-cell">23</div>
+        <div class="day-cell">24</div>
+        <div class="day-cell">25</div>
+        <div class="day-cell">26</div>
+        <div class="day-cell">27</div>
+        <div class="day-cell">28</div>
+
+        <div class="day-cell">29</div>
+        <div class="day-cell">30</div>
+        <div class="day-cell">31</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

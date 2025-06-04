@@ -2,50 +2,76 @@
 
 *{
     /* outline:1px solid lime; */
+    margin: 0;
+    padding: 0;
     font-size: 10px;
+    box-sizing: border-box;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .badacontainer{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(to bottom,#6363cb, #4d1010);
 }
 .container{
+    padding: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    background-color: #EDF2F7;
+    border: 4px solid transparent;
+    border-image: linear-gradient(90deg,#40D1C8 0%,#C084FC 100% )1;
     width: 30%;
     aspect-ratio: 1/1;
     font-family: 'Inter',sans-serif;
     font-variant-numeric: tabular-nums;
-    background-color: rgb(78, 205, 170);
-    border-radius: 10px;
-    border: 2px solid red;
+    margin: auto;
 }
+
 @media (max-width:1230px){
-    .badacontainer{
+    .container{
         transform: scale(1.7);
     }
 }
 @media (max-width:1070px){
     .container{
-        /* transform: scale(2.5); */
-        width: 60%;
-        /* height: 100%; */
+        width: 45%;
+    }
+}
+@media (max-width:728px){
+    .container{
+        width: 50%;
+    }
+}
+@media (max-width:500px){
+    .container{
+        width: 50%;
     }
 }
 .header{
     width: 100%;
     display: flex;
-    background-color: #8db8dd;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
     border-radius: 10px;
-    border:0.1px solid black;
 }
 .header div{
     font-size: 2rem;
+    font-weight: 600;
+    color: #2D3748;
 }
+ 
 .month{
     width: 100%;
     height: 100%;
@@ -57,6 +83,7 @@
     margin-bottom: 1rem;
 }
 .month ul li{
+    color: #A0AEC0;
     list-style: none;
     font-size: 1.5rem;
     width: 14.2857%;
@@ -68,13 +95,14 @@
         font-size: 1.2rem;
     }
 }
+
 .days{
     display: flex;
-    /* justify-content: space-around; */
     flex-wrap: wrap;
     row-gap: 2rem;
 }
 .days div{
+    color: #2D3748;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,27 +111,27 @@
     font-size: 2rem;
     cursor: pointer;
     position: relative;
-    background-color: rgb(78, 205, 170);
-}
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
+@media (max-width:592px){
+    .container{
+        padding: 0rem;
+        width: 57%;
+    }
+}
 #add{
     width: 4rem;
     height: 4rem;
-    /* padding: 0; */
     border: 0.5px solid grey;
     font-size: 2.5rem;
     border-radius: 50%;
-    background-color: rgb(107, 56, 56);
+    background-color: rgb(38, 21, 83);
     color: aqua;
+    cursor: pointer;
 }
 .addtext{
     font-size: 2.5rem;
-    color: rgb(79, 54, 102);
+    color: rgb(222, 230, 231);
 }
 .modal{
     display: none;
@@ -121,13 +149,12 @@ body{
     padding: 20px;
     border-radius: 8px;
     min-width: 300px;
-    /* he */
     text-align: center;
     gap: 2rem;
 }
 .task ul li{
     font-size: 2.2rem;
-    color: brown;
+    color: aqua;
 }
 .hii{
     margin-top: 2rem;
